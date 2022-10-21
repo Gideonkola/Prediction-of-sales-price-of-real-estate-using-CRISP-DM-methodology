@@ -1,0 +1,590 @@
+---
+title: "Application of CRISP-DM methodology to analyze real estate business"
+author: "ABEGUNRIN GIDEON 2118461"   
+date: "5/16/2022"
+output:
+  html_document: 
+    toc: yes
+    fig_width: 4
+    fig_caption: yes
+  word_document: 
+    toc: yes
+    fig_width: 4
+  pdf_document:
+    toc: yes
+    number_sections: yes
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE)
+```
+
+
+*keywords: CRISP-DM,data science, data analytics, real estate, business*
+
+
+
+*Abstract*
+*The era we are in now is one of the immense data called big data and it is characterized by volume, velocity, veracity, and variety. For an analysis of this big data, data science is pivotal. Data science is a pivotal tool for organizations, and it has been seen as a veritable asset for businesses. Data science has also been reputed to have immense application for business regardless of sector and it has been deployed to help gain insights into business operations. Data science has also been reputed to have immense application for business regardless of sector and it has been deployed to help gain insights into business operations. This report considered the real estate business using a CRISP-DM methodology. The real estate business is as old as human existence which is attributable to the need to provide shelter for inhabitants of the earth. Findings from the real estate business showed that the business is domiciled within Florida (Miami) and it is close to a water body. Also, it was found that there is a positive correlation between some of the variables considered. The Linear regression model was deployed to examine the relationship between sales price and structure quality and it was found that there is positive relationship between the two variables (p<0.05). from the linear regression, the r-squared was 0.14 (14%) while for the multiple regression, the r-squared was 0.76 (76%). From the logistic regression, the AIC is 438.07 which is the Akaike information  criterion and it is applicable in evaluating how well a model fits the data Much more than that, other variables from the data sets were used in predicting sales price and this was also captured.*. 
+
+# Introduction
+Data science is a pivotal tool for organizations, and it has been seen as a veritable asset for businesses (Nielsen, 2017). Data science has also been reputed to have immense application for business regardless of sector and it has been deployed to help gain insights into business operations.  It is vital to note that the era we are in is one of tremendous data otherwise referred to as big data which is characterized by volume, velocity, variety, and veracity. But the data must be analyzed, and insights must be gleaned from it to inform business decisions. Doing business is a complex endeavor as there are lots of persons and factors involved that impact the process. There is the need to make a decision using data-driven approaches and it has been seen by researchers as a viable way to add value to the business (Chin et al, 2017). Data science also has other nomenclature in the business world, and it is also known as business intelligence and analytics or data science for business and this has with it big data analytics (Newman et al, 2016). But to make the most out of data science, data mining is important, and this follows a standardized process such as the CRISP-DM methodology which will be used for the analysis of real estate in this research.
+
+The real estate business is as old as human existence which is attributable to the need to provide shelter for inhabitants of the earth. It is important to note that shelter is a basic human good, and it is one of the basics of life as opined by Maslow (1943,1954). As humans developed from being primitive, they gained mastery of the environment, and there has been a drive toward creating better structures for them to inhabit lands and other improvements made on the land. Through their experience with the environment, they manipulated and disturbed the natural environment to suit their needs, and the water, trees, minerals, etc. were deployed to build real estates. In real estate, various factors can be considered before deciding to settle in a particular area and this can range from nearness to landmarks, nearness to railways, nearness to rivers, etc. which would also be considered in this research. 
+
+Consequentially, real estate is pivotal for human survival because of the need to meet the primary needs of humans. This report will give an insight into the real estate business in a particular location, evaluate various conditions that facilitate real estate business, establish relationships between different conditions (variables in the datasets), and make a recommendation for the real estate business. 
+
+
+# Methodology
+from figure 1, the methodology for this report will assume a CRISP-DM approach and proffer insights into how data science can be applied to various datasets. The CRISP-DM methodology is an acronym for the cross-industry standard process for data mining and basically, it is a six-phased approach that describes the life cycle in data science (Data Science Process Alliance, 2022). Each discipline has its unique approach to it and data science is not left out. It can be used as a guardrail to plan, organize and implement data science projects such as this.   The CRISP-DM methodology has six stages, and it is often iterated (Chapman, P et al, 2000). 
+
+![Figure 1 CRISP-DM methodology](\Users\abegu\Downloads\crispdm.jpg)
+
+
+
+
+
+
+Figure 1: a framework showing the CRISP-DM methodology
+Source(https://towardsdatascience.com/crisp-dm-methodology-for-your-first-data-science-project-769f35e0346c)
+
+
+# Literature review
+## Deconstructing the CRISP-DM methodology
+The first stage in the CRISP-DM methodology is business understanding and this can span to problem definition, scoping, and planning. There is a need to understand the business to be analyzed before going forward to make an appropriate analysis and determine the right insights to be unveiled. The second stage helps to shed light on the data, and this can be referred to as data understanding. Data is the focus of any analysis, and the data must be understood for you to make good inferences from it. This also involves initial data collection, data quality assurance, data exploration, and the raising of hypotheses. Data is everywhere and in various forms be it structured, unstructured, or semi-structured and data analytics helps with the collection and aggregation of data which can then be subjected to statistical analysis. The third phase is the data preparation and at this stage, the final data set needed for the analysis is constructed and drawn. Take for instance, before cooking, one would have a whole lot of ingredients and draw them according to specification or choice to suit one’s palate. That is quite apt in describing data preparation. The fourth phase is the modeling phase and modeling involves the use of mathematical or statistical algorithms to solve data problems. The fifth phase is the model evaluation phase, and this involves assessing the accuracy and precision of the models and from results gotten in quantitative forms, models can be evaluated. Lastly, the sixth phase is the deployment phase and in this phase, the model can be used. This project will also use appropriate strategies for data collection, sampling, quality assessment, and repair and it will be subjected to rigorous statistical analysis, and visualizations would be made. From the analysis and visualization, inferences would be made to support business decision-making. 
+
+## A brief insight into Business Understanding
+
+Real estate is a property that has land, buildings, and other natural resources on it. Much more than the natural spread of land both fertile and non-fertile lands, the other natural resources are elements of real estate. This has assumed evolutionary changes as time changed. According to PWC (2020), the real estate investment industry will be at the center of rapid economic and social change which will impact and transform the built environment. It is important to understand as opined above that shelter is a basic need for humans and this has assumed a change since men gained mastery of the environment and became better at exploring it. With the impetus for migration, thousands of people are migrating across countries, and this has been attributed to the new wealth in these economies. 
+This is the first stage of the CRISP-DM methodology, and it is often specific. Business understanding gives precise information about the business and the methods that would be most applicable in analyzing it. As a businessperson interested in venturing into real estate, data is needed to inform decisions. The decision to purchase a piece of real estate will also consider proximity to the road, rail, public transport,  etc. which are imperative for urban success.  As a wise investor, I must also understand the location of the real estate and some other features which are contained in the data set for this study before making my decision to buy or not. Understanding the various factors highlighted above would influence the physical and geological considerations that would be put in place before erecting structures, the type of structures to erect, and other aesthetic features that would bring comfort to the inhabitants. As a data analyst that makes insight from data, I am poised to help analyze data sets related to the real estate business to report back to stakeholders pivotal to the business and make recommendations for them to decide. 
+We are in a moment where data is everywhere and this confers more benefits on businesses, like the necessity not to make decisions haphazardly but on well thought out evidence from empirical sources. The dataset for this business contains various variables mostly in continuous form and this makes it viable for quantitative data analysis. The current business has information on features relevant to the business such as the sales price ($), land area, floor area, value of special features, distance to the nearest rail line, distance to the ocean, distance to the nearest body of water, distance to the Miami central business district, distance to the nearest sub center, distance to the nearest highway, age of the structure, dummy variable for airplane noise exceeding an acceptable level, quality of the structure, sale month, latitude and longitude. 
+In a bid to deep dive into the business, one must understand it. The business with the above-listed features (variables) is one invested in real estate and properties. Measures that attest to this were captured in the datasets for this report and from the measures; one can make some analysis to inform the choice of buying the properties. Shelter is one of the basics of human life as opined by Maslow (1943) and people always must be able to stay in houses that suit their preferences. But in choosing between getting properties, various factors would be considered based on one`s choice, needs, and taste. 
+
+
+## Objectives of the business
+The major objective of the business is to analyze real estate attributes for decision making. The specific objectives are:
+
+1.	Ascertain the location, natural and physical features of the real estate.
+
+2.	Analyze the descriptive of the variables in the data set
+
+3.	Examine the relationship between continuous variables
+
+4.	Ascertain the relationship between continuous and categorical variables 
+
+5.	Predict the sales price from quality structure
+
+6.	Predict sales price from other variables in the data set
+
+7. Make recommendation for business 
+
+## Data Understanding
+Data are quantities, characters, facts, and statistics collected for reference or analysis. They form the basis for reasoning and calculation and from them, insights can be gleaned. Data can be in quantitative and qualitative forms. The data for this project are in continuous form and they can change over time and can have different values at different time intervals. They are obtained by measuring or counting using the standard instrument of measurement such as distance meters. From the database, some columns seem promising as they contain variables that can be analyzed to make a decision. Latitude and longitude are coordinate systems that can be applied to determine the position or location of places on the surface of the earth. It is an age-long method used for spatial reference and it can be used to search for a place. Also, with the longitude and latitude, distance and proximity can be calculated which can also give tremendous insight into this project. 
+From the data set, it is also important to bear in mind that most of the columns are important for example the personal number is like a unique identifier for each property, and also by that defining quality, it can be used to identify properties since it's unique for each property. The essence of assigning unique numbers or unique identifier for items is to be able to delineate or distinguish so that categorization can be made since each property has its unique identifier take for instance, as citizens of a country there is a unique number attached to each person and it can be in form of national identity number it can be in form of tax identity number it can be in form of passport number it can be in form of various numbers that is specific to each individual and it is used just for identity. Amongst all the variables in the columns, there is a dummy variable that stands for airplane noise exceeding an acceptable level. Dummy variables take values between zero and one and by their nomenclature people may think they are not useful but they have much significance and they are important in economic analysis or econometric analysis. Much more than this dummy variable it can be used to represent the absence or presence of something. Dummy variables are numerical variables and they are also applicable for regression analysis they often take the values zero or one which is used to indicate the presence or absence of an event. 
+The sales price is also important as a variable for analysis in this report in the sense that one can be able to gain insights into the price of real estate property sold in that area. There are also other variables in the data set that will represent measures of distance for instance land area measured in square feet, floor area measured in square feet, values of special features distance to the nearest distance to the ocean and so many other variables in the data set. 
+Although most of the variables in the data sets are in continuous form, implying that they can take any value and they fall within a range and examples can be height, weight and they can also be any variable that can be measured. Continuous data are quantitative or numerical data and they can be further categorized as interval or ratio data. They can be measured along a continuum, and they have a numeric value. This implies that most of the data that would be used for the report is quantitative and from that analysis can be made, predictions can be gotten, and general conclusions can be drawn which can influence decision making. For the modeling and analysis that I would do the datasets are wide and they are large enough for the modeling of my choice which I will do in the latter part of this report. 
+
+Data would also be transformed into categorical variables to allow for the delineation of variables along with some specific metrics or categories. Categorical variables are also called qualitative or discrete variables and basically, they include two or more categories. They might be dichotomous with two categories (male or female) or more than two categories which can be ordinal such as satisfaction measured on a Likert scale of 5 (strongly disagree, disagree, unsure, agree, and strongly agree. Some of the variables that would be transformed in the dataset include structure_quality(5 excellent, 4 good, 3 fair, 2 poor, and 1 very poor) and month_sold (from January to December).  
+Since the dataset for this report is in a table, there is no need to match various data sources since all the variables are represented in a table already. So, for my analysis, I will be depending on the data set from the table. Also, as part of the process is ensured that the data sets are prepared for statistical analysis.  Preparation is done by exploring the data, cleaning the data, wrangling the data, and making sure that it's ready for analysis. When this is done missing values in from of NA and NANS, would be detected and expunged from the data sets so that they won't impinge on my analysis and affect the veracity of my results. 
+
+Data are the basis of any numerical calculation and analysis by being numeric quantities, they can be subjected to rigorous statistical analysis and from the analysis, interpretation can be made, and insights can be generated which can be used to make a decision that pertains to one business. Depending on the objectives one wants to achieve in this report, all the variables contained in the dataset have specific use. Any quality that can be measured in numerical terms is important because by the measurement, magnitude or size can be determined and one can infer that A is greater than B or A is lesser than B or vice versa. Data revolves around all human endeavors as everything we do each day has an element of data in it. If one is careful enough, one would notice that decisions are made based on data though one might not be conscious of it. For instance, scrolling through your phone and seeing projections for rainfall for the next day will prompt you to prepare for the day, and, seeing weather reports for extreme environmental occurrences, prompts someone to prepare in anticipation of bad weather so that one won't be caught unawares.
+
+
+## Data Preparation
+Data preparation is also referred to as data pre-processing. Every activity on earth follows a process some guidelines must be followed so that such activity can be successful. This is also applicable to data analysis. Data preparation can be defined as the process of cleaning and aggregating raw data before its use for business analysis. it's might not be the most important task in the data analysis process, It can show that good results are gotten. This thus implies that data preparation is a vital component of good data analysis. 
+Decisions made in businesses can only be good as the data from which such decisions are made. This shows the imperative of quality data in influencing the business decision.  Also, data that will be used for business analysis must be trustworthy, meaningful accurate, and representative. So, from meaningful data comes better insight.  Apart from the qualities highlighted above about data, it must be accessible, be transparent. and be repeatable. This implies that on repeated analysis., the same results are gotten. What lends credence to this in research and what can be used to ascertain this is reliability and validity. 
+
+Since the dataset for this report is from a single source, there is no need to merge. If we are dealing with datasets from multiple sources, it is important to merge them to have an aggregate that we can be able to work with. Aggregation of data sets by merging ensures that the data is not scattered, and one can have the whole data in one piece to be deployed for analysis. 
+Before one proceeds, it is important to understand that we can select a sample subset of the data and that brings to the analysis a sort of granularity. Samples are often selected to ensure that the whole event or dataset is not considered and to ensure faster processing. But there is a caveat that must be considered. Samples chosen for any analysis must be representative enough for the research that will be done. Sampling in research is selecting a representative part of the population to be used for analysis and this can be done for many reasons. Sampling helps in scaling down the unit of analysis to a level that will be easy to work with, it also helps with the economy in instances where one needs to cover a large population, some target population might not easily be accessible, and sampling ensures that a representative portion is considered. An element I can consider as sampling in this report would be the splitting of datasets into training and testing sets
+Sampling in research is the selection of a subset of data which helps in ensuring excellent results although errors can be present between population and sample often referred to as sampling errors. Research is complex and often involves lots of people which bring into it various drawbacks therefore, sampling seeks to select a representative sample from the target audience that can now be the focus of analysis, and evidence from the representative sample can be generalized for the entire population. 
+
+Aggregating records is also pivotal in this report although the data set is structured and from a single source. An aggregate can be a composite of numbers, records, or other data. With the various columns in the data set, the data set has been aggregated as there are hundreds, thousands, or even more records in the dataset. When data is aggregated, it has immense importance in the analysis as one can query the data easily, and conduct a summary to gain quick insight into the data and what it represents before proceeding with the statistical analysis. The dataset for this report has been aggregated into a table divided into rows and columns. 
+Some new attributes can be derived from the datasets given and one of such is the longitude and latitude. Longitude and latitudes are systems of lines that can be applied in describing the location of places on earth. This implies that latitude and longitude are vital for location and distance. There are a wide variety of tools that can be used to assess this and new attributes such as location representing the latitude and the longitude can be determined. Also, one can check their proximity from other areas to water bodies and other environmental features that can be considered. Maps can be created with the longitude and latitude captured in the dataset which will be done in the later part of this report. Some other attributes that can be derived from the dataset can include scaling down structure quality to ensure that there is categorization. One can give scales to structure quality and rank based on numbers probably five representing excellent, 4 good quality, 3 fair, 2 poor, and 1 very poor.  Numbers from the data set can be transformed following rules and this is done to suit the objective one has pre-determined. 
+ In the pre-processing stage for data analysis, it is important to sort data. Sorting of data is the process of arranging the data in a bid to make it easier to understand, analyze and visualize. Data tells stories and at first glance, one must be able to have a good inkling of what the data is saying. Data at all times must be unambiguous and it must be presented in the simplest of terms.  Data can be sorted based on actual values, counts, or percentages, it can also be ranked in ascending or descending order which helps gradation. 
+ 
+In getting the data ready for analysis, there is a need to clean the data by removing or replacing blank or missing values. Missing values can be in form of NA or NaNs. NA represents missing values while NaN represents not a number used for numeric operations for instance undefined numbers. But before proceeding, one needs to check if there are missing values in the data set, and a function to do that is the is.na function. Missing values have unknown values, and they can pose errors in one's analysis. It is therefore advisable to remove them and there are various ways to exclude missing values from datasets. Some mathematical operations have a way of removing missing values when they take the na.rm argument, and when this is true, missing values are excluded. Some of the other ways of removing NA s na.omit which removes all rows with any missing values. The na.action=na.fail also stops operation when it comes across a missing value. Another syntax for filtering missing values includes na.exclude which drops out rows with missing values and keeps an eye on them wherever they are, na.pass which takes no action. 
+In carrying out this operation, tidyverse which is a data cleaning package in R proves significant. The tidyverse package has in it tidyr and dplyr which are applicable for detecting missing values. The tidyverse library houses the dplyr function which does the grammar of data manipulation. The tidyverse package has been reputed to be one of the most important packages in R as it is applicable for a variety of operations. 
+For this report, we have a large dataset, and it is important we split it into training and testing sets to estimate the performance of the machine learning algorithms that would be used for the analysis. The train-test split is important in classification, regression, and other supervised learning algorithms. It involves taking a dataset and splitting it into two subsets. The first subset can be deployed to fit the model and the subset is called the training dataset. The second subset is not applicable for training the model, but the input element of the dataset is provided to the model then predictions are made, and a comparison is done with the expected values. Splitting data set is important in supervised machine learning and it is done for model evaluation and validation.  
+
+
+## Modeling
+Before I delve into statistical modeling, it is vital to shedding light on data analysis which is the umbrella under which statistical modeling springs from. Tukey (1962) defined opined that data analysis is a large endeavor and it is much more complex than traditional mathematics. This statement, therefore, typifies that data science which requires knowledge of traditional mathematics; is much more complex than it. Statistical modeling can be defined as the process of applying statistical analysis to a data set which is often a mathematical representation. A statistical model is a mathematical model that has a set of statistical assumptions with the generation of sample data. They are powerful tools for understanding aggregated data and they can be deployed for making predictions using data. 
+
+For this report, it would be worthwhile to run a visualization that will showcase the location of the business, and this will be done using the longitude and latitude of the datasets. Latitudes are the imaginary line that runs in an east-west (side to side) direction around the earth while longitudes are lines that run from north to south (up and down). Location is vital as it says a lot about the business to be done, proximity to infrastructures, closeness to urban life, and some natural features which can contribute to the success of the business. 
+Various models will be used for statistical analysis and prediction and some of the models to be used include linear regression, multiple regression, ANOVA, correlation, and chi-square. This will be done to evaluate the relationship between two or more variables and the strength of the relationship. The data types available for mining are majorly in continuous form and this makes them applicable for quantitative analysis which will be done in line with the pre-determined objectives of this study. 
+
+For a start, it is important to explore the datasets, and this would be done using exploratory data analysis. Exploratory data analysis helps to have a critical look at the data to examine it for distribution, and to check outliers and other anomalies present in the data. In production, there are unforeseen particles that might want to enter the production mix, and what this necessitates is the drive to filter out all those particles. Such is the same for data analysis and unwanted particles which are in the form of outliers must be expunged from the dataset. Much more than this, according to  (Natrella M, 2010), exploratory data analysis is vital for the generation of hypotheses and hypotheses are educational guesses about the outcome of a happening and it can be in the null form or the alternate form. Apart from the generation of hypotheses, it is also applicable for proper understanding of the data through visualization and other graphical representations. 
+As a scientist, curiosity runs in the mind, and this prompts us to question situations. Also, scientists can draw inferences from situations at face value, but this needs a bit of empiricism to give validity to their inferences. This helps by assisting the natural patterns of recognition by scientists. EDA has become popular over the years since the seminal work of Tukey in 1977 and since then, it has become a standard to analyze a data set (Mosteller F, Tukey JW, 1977: Tukey J, 1977). In exploring data, graphics are important, and apart from all the analysis, the data must be expressed in visual form. This helps in making tremendous insight from the datasets and helps in ascertaining the quality of the data and models generated. 
+
+Apart from all these, exploratory data analysis can be summarized to perform the following functions which include unveiling insight into the datasets and the database structure, visually capturing potential relationships which can be in form of magnitude and direction, unearthing outliers and other abnormalities present in the dataset, generate predictor or explanatory models or help with the preliminary selection of appropriate models and lastly, extract high-quality variables that are relevant to the study under consideration. 
+
+## Exploratory data analysis
+
+## Descriptive statistics
+In the works of Kaur. P et al, 2018, it was revealed that descriptive statistics were applicable in summarizing data in an organized manner by describing the relationship between variables in a sample or population. Also, LAERD statistics (2018) maintained that descriptive statistics are vital as part of initial data analysis and they set the basis for comparing variables with inferential statistical tests. As part of the exploratory data analysis, it is a vital step in the conduct of research, and it is a precursor to making statistical inferential comparisons. Descriptive statistics are inclusive of many types of variables namely ordinal, nominal, interval, and ratio as well as measures of frequency, measures of central tendency, and a measure of dispersion and variation. 
+
+## Inferential statistics
+Inferential statistics are also vital in research and from the name they are applicable in drawing inferences about the sample in a population. According to Allison JJ et al (2000): and Botti M et al(2008), inferential statistics allows the detection of a large or small difference in variables or to determine correlations between variables applicable to research questions. 
+
+
+
+# Results
+
+
+
+```{r}
+#Loading of data into R
+df<-read.csv("C:\\Users\\abegu\\Music\\miami-housing.csv")
+```
+This is one of the initial stages in data analysis in R-studio. I imported the data set into an IDE (R-studio) using the syntax above and the dataset was passed into df.The dataset is a dataframe having 13932 columns and 17 rows. 
+
+
+
+
+
+```{r}
+#create a new data frame from df
+df1<-df
+```
+In a bid to retain the full features embedded in the dataframe (df) created, I had to create another dataframe (df1) which would be used for further analysis. 
+
+
+```{r}
+library(ROCR)
+library(knitr)
+library(ggmap)
+library(tidyverse)
+library(sf)
+library(mapview)
+library(ggplot2)
+library(psych)
+library(Hmisc)
+library(dplyr)
+library(corrplot)
+library(gplots)
+library(sfsmisc)
+library(Rlab)
+library(forecast)
+```
+
+R has lots of packages and packages contains code, data and documentation which are in a standardised collection format that users can install in R and they can be gotten from a central software repository specific to R-studio which is the comprehensive R archive Network or other repositories. 
+
+
+
+
+
+
+
+```{r}
+#exploring the data
+dim(df)  #this returns the dimension of the dataframe and it shows the number of rows and columns
+str(df)   #this returns the structure of the dataframe which inlcude name, type and preview of data in each column
+class(df)  #shows the class of the dataset which is a dataframe
+head(df)   #returns the first six rows of the data
+nrow(df)   #returns number of rows
+ncol(df)   #returns number of columns
+names(df)  #returns the name attribute for the rows in the data frame
+```
+Data exploration is important in R as it helps one to have a glimpse into what the data is all about. dim(df) was used to know the dimension of the data and it was found out that the data has 13932columns and 17 rows. str(df) shows the structure of the data, head (df) and tail(df) returned the first six rows and the last six rows.  
+
+
+```{r}
+#check missing values
+is.na(df)
+```
+As part of data pre-processing, it is necessary to ensure that the data is cleaned and ready for data analysis. Data preparation helps in checking if there are unwanted values in the data set that can impinge on the results to be gotten and this can be inform of NA and NaN. NA are generally missing values and NaN means not a number and this typifies that though there is a result, but it cannot be represented in the computer system and the results are usually undefined. Checking for NA returns logical values such as TRUE or FALSE. 
+
+
+
+```{r}
+#OBJECTIVE ONE
+#1. determine the location of the real estate 
+#To determine the location of the real estate, the mapview package would be used, which has been loaded above. Mapview shows a map of the real estate with some features surrounding it. 
+#transform data to spatial object
+spatialobject <- st_as_sf(df1, coords = c("LONGITUDE", "LATITUDE"),  crs = 4326)
+mapview(spatialobject)
+```
+
+![Alt text](\Users\abegu\Downloads\MIAMI MAP.jpg)
+Figure 2: map of the location
+
+#From figure 2 which is the map, it is important to note that the location of the real estate is Miami (Florida).From the map, one can note that the real estate is close to a water body and some pieces of the real estate are situated on an island in Miami as depicted in the map.There are lots of special features such as beaches and we have the Riveria beach, the West Palm Beach, Lake Worth beach, North Palm Beach and the Boyton Beach.It also has some moutains. There are also other natural features there such as springs and pines, wildlife management areas and natural preserves. Bordered to the East is the Miami Beach which can offer a whole lot of fun and aesthetic for the benefit of those closer to the area.  The place is connected and mobility and navigation is quite easy as the road network is good and movement from one place to the other can be done easily. Cuba is to the North of the location and the Bahamas is on the East side. There are also parks for tourism and other forms of pleaurable adventures. There are schools, gyms, shopping plazas, supermarkets, mental health homes etc and all these can guarantee social comfort in the neighbourhood. Navigating to the East and Western part might be challenging as water surrounds it and movement can only be made possible by air or by boats.    
+
+
+
+
+```{r}
+#select variables that are necessary for exploration and exclude others that might not be relevant
+df1[,c("LONGITUDE", "LATITUDE","PARCELNO","month_sold")]<-list(NULL)
+```
+
+Since the Map has been gotten from the longitude and latitude, other variables which are not needed in the next series of analysis can be excluded and they are PARCELNO which is a unique identifier, avno60plus and month_sold can be excluded. 
+
+
+```{r}
+#EDA: EXPLORATORY data analysis is important as it helps to show the main characteristics of the data to gain insight into it. 
+#perform the first five summary
+#EDA 
+summary(df1)
+EDA<-as.data.frame(summary(df1))
+View(EDA)
+```
+
+Exploratory data analysis is vital in statistical analysis in the sense that it allows the analyzing of data sets to summarize their main features and also visuals can be incorporated such as charts and graphs. Exploratory data analysis according to IBM(2022) helps determine the best approach to manipulating data sources to unravel patterns and answers that one might be looking for answers to. It also helps to discover patterns, highlight anomalies, test hypothesis and other assumptions that might be inherent in a data. It gives tremendous insight at face value. 
+
+It is necessary before real analysis begins to venture into exploratory data analysis because it can reveal what the data contains before the modelling and other statistical calculation be done. It helps understand the data set better and the relationships with them. Once the data sets are properly understood, one can then proceed to consider the appropriate data analytic technique to use . The origin can be traced back to the work of John Tukey in the 1970s and it has over the years been a standard template applicable for data discovery and gaining insight into data. Basically, EDA helps to look at data before any assumptions would be made  
+
+From the analysis the mean of the SALE_PRC is 399942 while the median is 310000. The minimum and maximum SALE_PRC are 72000 and 2650000. Age has a mean of 30.67, median of 26.00, minimum and maximum values of 0 and 96.00 respectively. The LND_SQFOOT is another variable that was considered, and it has a mean value of 8621, median of 7500, minimum and maximum values 1248 and 57064 respectively. The TOT_LVG_AREA has a mean of 2058, median of 1878, minimum and maximum values of 854 and 6287. SPEC_FEAT_VAL has a mean of 9562, median of 2766, minimum and maximum values of 0 and 175020 respectively. RAIL_DIST has a mean of 8348.5, median of 7106.3, minimum and maximum values of 10.5 and 29621.5 respectively. OCEAN_DIST has a mean of 31691.0 AND A MEDIAN OF 28541.8 with minimum and maximum values of 236.1 and 75744.9 respectively.  WATER_DIST has a mean of 11960, median of 6923, minimum and maximum values of 0 and 50400 respectively. CNTR_DIST has a mean of 68490, median of 65852, minimum and maximum values of 3826, 159977. SUBCNTR_DI has a mean of 41115, a median of 41110, minimum and maximum values of 1463 and 110554 respectively. HWY_DIST has a mean of 7723.8, median of 6159.8, minimum and maximum values of 90.2 and 48167.3 respectively.  Structure_quality has a mean of 3.514, median of 4.000, minimum and maximu values of 1.000 and 5.000 
+
+
+
+```{r}
+#boxplot to examine outliers
+boxplot(df1,main="box plot for real estate business", notch=TRUE, col=c("gold","darkgreen"))
+```
+Boxplots are applicable for comparing distribution between several groups. It also helps in detecting outliers. 
+
+```{r}
+#to examine correlation in the data sets using a correlogram
+correlation<-cor(df1,method=c("spearman"))
+correlation
+cor<-data.frame(correlation)
+View(cor)
+corrplot(correlation)
+```
+From the correlation coefficient matrix above, some variables had positive correlation coefficient, and some had negative correlation coefficient. Correlation specturm was also captured in figure 3. It was found that SALE_PRC and TOT_LVG_AREA has a correlation coefficient of 0.69 (69%) which is high and positive. This implies that as the total living area increases, the sales price also increases. WATER_DIST  and CNTR_DIST has a correlation coefficient  of 0.58(58%) which is also positive, so the more increase in water distance, the more the increase to the centre distance. CNTR_DIST and SUBCNTR_DI has correlation coefficient of 0.69 (69%) which is high and positive. OCEAN_DIST and WATER_DIST has correlation coefficient of 0.45(45%). There are other positive relationships between variables in the datasets though they are weak.  It was also found out that structure_quality and SALE_PRC has positive correlation (0.44) and the better the structure quality, the more the sales price increases. Other positive and negative correlations were captured in the correlation matrix. 
+
+![Alttext](\Users\abegu\Downloads\corr.jpg)
+Figure 3: Spectrum showing the interpretation of correlation coefficient
+
+
+```{r}
+#to examine correlation using a heatmap
+palette = colorRampPalette(c("green", "white", "red")) (20)
+heatmap(x = correlation, col = palette, symm = TRUE)
+```
+
+
+```{r}
+#to create categorical variables from continuous variables
+#convert month sold into categorical data
+df2<-df%>%mutate(month_sold=recode(month_sold,"1"="January","2"="February","3"="March","4"="April","5"="May","6"="June","7"="July","8"="August","9"="September","10"="October","11"="November","12"="December"))
+
+#convert structure quality into categorical variable
+df2<-df2 %>% mutate(structure_quality=recode(structure_quality,"1"="very poor","2"="poor","3"="fair","4"="Good","5"="Excellent"))
+```
+It is important to bear in mind that data can be transformed and this helps to change the data type for measurement. For this report, some continuous data were changed to categorical data and some of the variables that were changed are month_sold and structure quality. 
+
+
+```{r}
+#t-test for comparison sales price in January and Sales price in December
+x<-subset(df2$SALE_PRC,df2$month_sold=="January")
+y<-subset(df2$SALE_PRC,df2$month_sold=="December")
+t.test(x,y)
+```
+Interpretation
+Since the p-value is greater than 0.05, we fail to reject the null hypothesis.So, this implies that there is no statistical difference between sales price in January and sales price in December. 
+
+
+```{r}
+#anova  to compare sales price and month sold
+#is there a relationship between sales price and month sold?
+aov_model1<-aov(SALE_PRC~month_sold,data=df2)
+aov_model1
+summary((aov_model1))
+```
+ANOVA is used as a statistical estimate between a quantitative variable and one or more categorical variable. ANOVA tests whether there is a difference in the means of the group. 
+For the first anova model, Since the p-value is low(p<0.05),we have sufficient evidence to reject the null hypothesis. We can conclude that there is a significant differences between sales price and month sold. 
+
+
+```{r}
+#anova to compare sales price and structure_quality 
+#is there a relationship between sales price and structure_quality
+aov_model2<-aov(SALE_PRC~structure_quality, data=df2)
+aov_model2
+summary(aov_model2)
+```
+Since the p-value is less than the significance level(p<0.05), we reject the null hypothesis and this implies that there is significant relationship between sales price and structure quality. 
+
+
+```{r}
+#chi-square to 
+#is there a relationship between month_sold and structure quality
+chi_square<-table(df2$month_sold,df2$structure_quality)
+(chisq.test(chi_square))
+```
+
+
+Chi-square is a statistical approach to testing if two categorical variable have a significant correlation between them. Since the p-value is not less than 0.05, we do not reject the null hypothesis and we can conclude that the variables are not dependent. 
+
+
+
+```{r}
+#splitting the data sets into train and test data 
+(set.seed(123))
+dt = sort(sample(nrow(df), nrow(df1)*.7))
+train<-df1[dt,]
+test<-df1[-dt,]
+```
+
+It has been stated in the literature that train-test split is important to estimate the performance of machine learning algorithms and they can be deployed to make predictions on data not used in the model(test data set). It is important to do this when working with a large data set.  
+
+```{r}
+#simple linear regression to predict sale_prc from the structure quality using the training data
+regmodel<-lm(SALE_PRC~structure_quality,data=train)
+regmodel
+summary(regmodel)
+plot(regmodel)
+accuracy(regmodel)
+```
+
+Regression analysis can be described as a predictive modelling technique. It estimates the relationship between a dependent variable (target) and a independent variable(predictor). The simple linear regression is applicable in predicting a quantitative outcome (y) from a predictor variable (x). From the summary of the regression model, it can be seen that the p-value is less and this shows that we can reject the null hypothesis and accept the alternate hypothesis which this implies that here is a significant association between the predictor and the outcome variable (SALE_PRC and structure_quality).  The R-squared is also a measure of the goodness of fit and the r-squared for this model is 0.14 (14%) which typifies that the percentage of variation in the dependent variable explained by the independent variable is 14% which shows poor prediction.From the accuracy, the RMSE was 290844.1  From the Normal Q-Q plot, it can also be deduced that the residuals are normally distributed.  
+
+```{r}
+#predicting sales_prc using the test data 
+prediction<-predict(regmodel,newdata=test)
+table(prediction)
+summary(prediction)
+```
+for the prediction, the test data was used. 
+It was found out that 
+for structure_quality
+1 the predicted sales price is 124056.938133024
+2 the predicted sales price is 233211.664618764
+3 the predicted sales price is 342366.391104504
+4 the predicted sales price is 451521.117590244
+5 the predicted sales price is 560675.844075984
+
+
+```{r}
+#predicting using structure_quality
+structurequality<-data.frame(structure_quality=c(1,2,3,4,5))
+pred<-predict(regmodel,newdata=structurequality,interval="confidence")
+summary(pred)
+pred
+```
+
+
+
+```{r}
+#multiple regression
+model1 <- lm(log(SALE_PRC)~., data=train)
+summary(model1)
+par(mfrow=c(2,2))
+plot(model1)
+
+#make prediction using test data set
+pred1 <- predict(model1, newdata = test)
+rmse <- sqrt(sum((exp(pred1) - test$SALE_PRC)^2)/length(test$SALE_PRC))
+c(rmse = rmse, R2=summary(model1)$r.squared)
+par(mfrow=c(1,1))
+plot(test$SALE_PRC,exp(pred1))
+```
+
+From the multiple regression ran above, it was found that all the variables considered were significant at their respective significant level except water_dist. Also, the coefficient of determination which is the r-squared was 0.76 (76%) which shows the goodness of fit and this implies that the percentage of variation in the independent variable explained by the dependent variable is 76%.
+
+```{r}
+#logistic regression
+model<- glm(avno60plus~.,train, family="binomial")
+summary(model)
+res<-predict(model,test,type="response")
+```
+From the summary of the logistic model, it was found out that TOT_LVG_AREA was not significant. The Null deviance shows how well the response variable is predicted by a model that includes only the intercept(grand mean). The null deviance is the value you get from the actual value of the data  set which is 1432.23. It is the value gotten when using only the intercept or the Bo. The residual deviance highlights how well the response variable is predicted with the inclusion of independent variables. The residual deviance is when you include the independent variable which is 412.07. The AIC is 438.07 which is the Akaike information  criterion and it is applicable in evaluating how well a model fits the data. 
+
+```{r}
+#removing TOT_LVG_AREA from the model to check 
+model<- glm(avno60plus~.-TOT_LVG_AREA,train, family="binomial")
+summary(model)
+```
+
+
+
+
+```{r}
+#result for prediction
+
+res<-predict(model,train,type="response")
+
+#create confusion matrix
+(table(ActualValue=train$avno60plus,PredictedValue=res>0.5))
+
+#calculate accuracy from the confusion matrix which is 99%
+(9591+86)/(9591+86+25+50)
+
+#draw ROC curve
+ROCRpred<-prediction(res,train$avno60plus)
+ROCRperf<-performance(ROCRpred,"tpr","fpr")
+plot(ROCRperf,colorize=TRUE,print.cutoffs.at=seq(0.1,by=0.1))
+```
+From the prediction, the confusion matrix was created with a prediction threshold of 0.5 and the accuracy was calculated from the confusion matrix and the accuracy is 99%. The ROC curve was also drawn and it tilted towards the true positives. 
+
+
+
+
+```{r}
+#visualization
+library(ggplot2)
+#1 Bar Graph for frequency of some categorical variables
+qplot(df2$structure_quality, geom ="bar",fill=I("blue"), main="frequency of structure_quality",xlab="structure_quality",ylab="number",color=I("blue"))
+#2  frequency of monthsold
+qplot(df2$month_sold, geom ="bar",xlab="month_sold",ylab="number",main="frequency of month_sold",fill=I("orange"))
+
+#3 Pie chart showing monthsold against structure_quality
+ggplot(data=df2, aes(x= month_sold, fill = structure_quality)) + geom_bar(position="stack") + coord_polar(theta = "y")
+
+
+#4 sales price against month 
+ggplot(df2, aes(x=month_sold, main="sales price against month sold", y=SALE_PRC, fill=I("blue"))) + geom_col()
+
+#5 sales price against month with structure_quality as facet_wrap
+ggplot(df2, aes(x=month_sold, y=SALE_PRC, fill=I("blue"))) + geom_col(shape=19)+facet_wrap(~structure_quality)
+
+#6 sales price against structure quality
+ggplot(df2, aes(x=SALE_PRC, y=structure_quality,main="sales price against structure quality",fill=I("blue"))) + geom_col()
+
+
+#7 structure quality against sales price with month sold as facet wrap
+ggplot(df2, aes(x=SALE_PRC, y=structure_quality, fill=I("blue"))) + geom_col()+facet_wrap(~month_sold)
+
+#8 age against sales price
+ggplot(df2, aes(x=age, y=SALE_PRC,fill=I("blue"))) + geom_col()
+
+#9 age against structure_quality
+ggplot(df2, aes(x=age, y=structure_quality,fill=I("blue"))) + geom_col()
+
+
+#10 landarea in square feet against sales price
+ggplot(df2, aes(x=TOT_LVG_AREA, y=SALE_PRC)) + geom_col()
+
+#11 sales price against distance to the miami central business district(feet)
+ggplot(df2, aes(x=CNTR_DIST, y=SALE_PRC,fill=I("blue"))) + geom_col()
+
+#12 distance to the nearest subcenter (feet) against sales price
+ggplot(df2, aes(x=SUBCNTR_DI, y=SALE_PRC,fill=I("blue"))) + geom_col()
+
+
+#13 distance to the ocean (feet) against sales price
+ggplot(df2, aes(x=OCEAN_DIST, y=SALE_PRC,fill=I("blue"))) + geom_col()
+
+#14 distance to the nearest rail line (an indicator of noise) (feet) against sales price
+ggplot(df2, aes(x=RAIL_DIST, y=SALE_PRC,fill=I("blue"))) + geom_col()
+
+
+#15 floor area in square feet against sales price
+ggplot(df2, aes(x=TOT_LVG_AREA, y=SALE_PRC,fill=I("blue"))) + geom_col()
+
+```
+
+
+Various visualization were ran to show the relationship between variables and from the visualizations, inference can be made. 
+
+
+
+
+#1 frequency of structure quality
+Good scored highly with a frequency of around 7800
+
+#2 frequency of month sold
+June performed well and most of the sales was recorded in June with a frequency of 
+
+
+#3 Pie chart showing monthsold against structure_quality
+from the pie chart, june had the highest good in terms of structure quality in the months considered. 
+
+#4 sales price against month 
+June had the highest sales in the chart
+
+#5 sales price against month with structure_quality as facet_wrap
+from the disaggregated chart, good had the highest count and June had the highest sales 
+
+#6 sales price against structure quality
+The better the structure quality, the higher the price
+
+#7 structure quality against sales price with month sold as facet wrap
+from the charts, good had the highest sales price and much sales was made in June
+
+#8 age against sales price
+from the chart, one can conclude that the lower the age, the higher the sales price. 
+
+#9 age against structure_quality
+from the chart, the lower the age, the better the structure quality
+
+#10 landarea in square feet against sales price
+the more the total land area, the higher the sales price 
+
+#11 sales price against distance to the Miami central business district(feet)
+It was found out that the nearer the distance to the Miami Central business district, the higher the sales price
+
+#12 distance to the nearest subcenter (feet) against sales price
+It was found out that the nearer the distance to the nearest subcenter(feet), the higher the sales price
+
+#13 distance to the ocean (feet) against sales price
+It was found out that the nearer to the ocean, the higher the sales price 
+
+#14 distance to the nearest rail line (an indicator of noise) (feet) against sales price
+It was found out that the nearer the real estate is to the railway, the higher the sales price 
+
+#15 floor area in square feet against sales price
+It was dound out that the smaller the square feet, the higher the price 
+
+
+# Evaluation
+First, from the data mining and analysis done, it`s important to note that the data mining results meets some of the business success criteria in the sense that it provided solution to some of the objectives. My results are clearly stated with discussion made under each result table. From the result, it was revealed that the location of the real estate property is in Florida (Miami) and it has lots of physical features that can influence the decision to buy. There are novel and unique findings that can be highlighted and from the data set, one can make an investigation into the number of properties, the various physical features and so many landmarks present in the location. The Linear regression model was deployed to examine the relationship between sales price and structure quality and it was found that there is positive relationship between the two variables (p<0.05). from the linear regression, the r-squared was o.149 (14%) which typifies poor prediction while for the multiple regression, the r-squared was 0.76 (76%). Predictions were also made using the test data set and the results were reported. Much more than that, other variables from the data sets were used in predicting sales price and this was also captured. A logistic regression was also done and the results were highlighted. From the logistic regression,the residual deviance is when you include the independent variable which was 412.07. The AIC was 438.07 which is the Akaike information  criterion and it is applicable in evaluating how well a model fits the data. From a business standpoint perspective and from the various analysis done, it would be worthwhile investing because of the location, presence of infrastructures and so many other conditions that makes life better. Also, from the visualization done, some variables are positively correlated with the sales price.  
+
+
+
+# Conclusion and recommendation 
+This report has applied CRISP-DM methodology to analyse real estate business. What necessitated the need to adopt this approach can be attributed to the reputation of the method and it is industry recognized and it also ensures a sequence and iterative process. From the map gotten from the longitude and latitude, various revelations came to the fore and it was found out that the location has various infrastructures that can aid human living. Also, from the correlation carried out, it was found that sales price and total living area had a positive correlation (69%), water distance and center has a positive correlation (58%) and center distance and sub center distance has a positive correlation (69%).There are other positive relationships between variables in the data sets though they are weak.  This report therefore recommended that real estate business is viable in the location and investment can be made into it considering the location and some other factors considered in this study.   
+
+
+
+*References*
+
+Allison, J.J., Calhoun, J.W., Wall, T.C., Spettell, C.M., Fargason, J., C A, Weissman, N.W. & Kiefe, C.I. 2000, "Optimal reporting of health care process measures: inferential statistics as help or hindrance?", *Managed care quarterly*, [Online], vol. 8, no. 4, pp. 1-10.
+
+Botti, M. & Endacott, R. 2008, "Clinical research 5: Quantitative data collection and analysis", *International emergency nursing*, vol. 16, no. 2, pp. 132-137.
+
+Chapman, P., Clinton, J., Kerber, R., Khabaza, T., Reinartz, T., Shearer, C. and Wirth, R., 2000, "CRISP-DM 1.0: Step-by-step data mining guide", SPSS inc, 9, p.13.
+
+Chin, J.K., Hagstroem, M., Libarikian, A. & Rifai, K., 2017, "Advanced analytics: Nine insights from the C-suite", *McKinsey Analytics*.
+
+Data Analysis and Regression. By *"F. Mosteller and J. W. Tukey"* (Book Review) 1979, , Royal Statistical Society, etc, London.
+
+Data Science Process Alliance, 2022, "What is CRISP DM?", https://www.datascience-pm.com/crisp-dm-2/
+
+IBM. 2022, "Exploratory data analysis".https://www.ibm.com/uk-en/cloud/learn/exploratory-data-analysis
+
+Kossowski, T. and Kauke, J., 2011, "Comparison of Values of Pearson’s and Spearman’s Correlation Coefficients on the Same Set of Data". *Quaestiones geographicae*, vol. 30, no 2, pp.87-93.
+
+Kaur, P., Stoltzfus, J. and Yellapu, V., 2018, "Descriptive statistics". *International Journal of Academic Medicine*, vol 4, no 1, p.60.
+
+Laerd Statistics.,2018. Types of variables. Available from: https://statistics.laerd.com/statistical-guides/types-of-variable.php.
+
+Rizopoulos, D. 2018, Max Kuhn and Kjell Johnson. Applied Predictive Modeling. *New York, Springer*, Wiley Subscription Services, Inc, Washington.
+
+Natrella, M., 2010, "NIST/SEMATECH e-handbook of statistical methods", *Clinical Chemistry(Baltimore,Md)*, vol. 49, no 6,pp 1033. 
+
+Newman, R., Chang, V., Walters, R.J. & Wills, G.B. 2016, "Model and experimental development for Business Data Science", *International journal of information management*, vol. 36, no. 4, pp. 607-617.
+
+Nielsen, O.B., 2017, "A comprehensive review of data governance literature", *Selected Papers IRIS*,  vol. 8, pp.120-133. 
+
+Maslow, A.H., 1943, "A theory of human motivation", *Psychological review*, vol. 50, no 4, p.370. 
+
+Maslow, A. H. 1954, "Motivation and personality", New York: Harper and Row.
+
+Tukey, J.W., 1977, "Exploratory data analysis", Vol. 2, pp. 131-160 
+
+Tukey, J.W., 1962, "The future of data analysis", *The annals of mathematical statistics*, vol. 33, no 1, pp.1-67.
+
+
+
+
+
+
